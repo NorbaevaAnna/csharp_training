@@ -22,7 +22,7 @@ namespace addressbook_web_tests
         public void SetupTest()
         {
             //driver = new FirefoxDriver();
-            driver = new ChromeDriver(@"C:\Windows\SysWOW64\chromedriver.exe");
+            driver = new ChromeDriver();
             baseURL = "http://localhost/addressbook";
             verificationErrors = new StringBuilder();
         }
