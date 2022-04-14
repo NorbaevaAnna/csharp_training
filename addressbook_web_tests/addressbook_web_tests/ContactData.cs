@@ -10,24 +10,20 @@ namespace WebAddressbookTests
     {
         private string name;
         private string lastname;
-        private string title;
-        private string company;
-        private string address;
-        private string email;
-        private string mobile;
+        private string title = "";
+        private string company = "";
+        private string address = "";
+        private string email = "";
+        private string mobile = "";
 
 
-
-        public ContactData(string name, string lastname, string title, string company, string address, string email, string mobile)
+        public ContactData(string name, string lastname)
         {
             this.name = name;
-            this.name = lastname;
-            this.name = title;
-            this.name = company;
-            this.name = address;
-            this.name = email;
-            this.name = mobile;
+            this.lastname = lastname;
         }
+
+ 
         public string Name { get { return name; } set { name = value; } }
         public string Lastname { get { return lastname; } set { lastname = value; } }
         public string Company { get { return company; } set { company = value; } }

@@ -47,7 +47,13 @@ namespace WebAddressbookTests
             Login(new AccountData("admin", "secret"));
             GoToGroupsPage();
             InitNewContactCreation();
-            FillContactForm(new ContactData("Anna1", "Norbaeva1", "89039532332", "VSK1", "Tomsk", "ladyann@sibmail.com", "89039532332"));
+            ContactData contact = new ContactData("Anna1", "Norbaeva1");
+            contact.Title = "89039532332";
+            contact.Address = "Tomsk";
+            contact.Email = "ladyann@sibmail.com";
+            contact.Company = "VSK1";
+            contact.Mobile = "89039532332";
+            FillContactForm(contact);
             SubmitGroupCreation();
             ReturnToHomePag();
         }

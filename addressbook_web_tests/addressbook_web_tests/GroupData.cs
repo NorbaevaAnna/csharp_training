@@ -17,8 +17,8 @@ namespace WebAddressbookTests
         public GroupData(string name, string header, string footer)
         { 
             this.name = name;
-            this.name = header;
-            this.name = footer;
+            this.header = header;
+            this.footer = footer;
         }
         public string Name { get { return name; } set { name = value; } }
         public string Header { get { return header; } set { header = value; } }
