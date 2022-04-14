@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests
+    public class СontaсtCreationTests
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -41,49 +41,59 @@ namespace WebAddressbookTests
         }
 
         [Test]
-        public void GroupCreationTest()
+        public void ContactCreationTest()
         {
             OpenHomePage();
             Login(new AccountData("admin", "secret"));
             GoToGroupsPage();
-            InitNewGroupCreation();
-            FillGroupForm(new GroupData("h", "d", "p"));
+            InitNewContactCreation();
+            FillContactForm(new ContactData("Anna1", "Norbaeva1", "89039532332", "VSK1", "Tomsk", "ladyann@sibmail.com", "89039532332"));
             SubmitGroupCreation();
-            ReturnToGroupsPage();
+            ReturnToHomePag();
         }
 
-        private void ReturnToGroupsPage()
+        private void ReturnToHomePag()
         {
-            //Возвращение на страницу со списком групп
-            driver.FindElement(By.LinkText("group page")).Click();
-            driver.FindElement(By.LinkText("Logout")).Click();
+            //Возврат на домашнюю страницу
+            driver.FindElement(By.LinkText("home page")).Click();
         }
 
         private void SubmitGroupCreation()
         {
-            //Подтверждение создания группы
-            driver.FindElement(By.Name("submit")).Click();
+            //Подтверждение создания контакта
+            driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
         }
 
-        private void FillGroupForm(GroupData group)
+        private void FillContactForm(ContactData contact)
         {
-            //Заполняются поля формы создания групп
-            driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
-            driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
+            //Заполнение формы контакта
+            driver.FindElement(By.Name("firstname")).Click();
+            driver.FindElement(By.Name("firstname")).Clear();
+            driver.FindElement(By.Name("firstname")).SendKeys(contact.Name);
+            driver.FindElement(By.Name("lastname")).Click();
+            driver.FindElement(By.Name("lastname")).Clear();
+            driver.FindElement(By.Name("lastname")).SendKeys(contact.Lastname);
+            driver.FindElement(By.Name("title")).Click();
+            driver.FindElement(By.Name("title")).Clear();
+            driver.FindElement(By.Name("title")).SendKeys(contact.Title);
+            driver.FindElement(By.Name("company")).Click();
+            driver.FindElement(By.Name("company")).Clear();
+            driver.FindElement(By.Name("company")).SendKeys(contact.Company);
+            driver.FindElement(By.Name("address")).Click();
+            driver.FindElement(By.Name("address")).Clear();
+            driver.FindElement(By.Name("address")).SendKeys(contact.Address);
+            driver.FindElement(By.Name("email")).Click();
+            driver.FindElement(By.Name("email")).Clear();
+            driver.FindElement(By.Name("email")).SendKeys(contact.Email);
+            driver.FindElement(By.Name("mobile")).Click();
+            driver.FindElement(By.Name("mobile")).Clear();
+            driver.FindElement(By.Name("mobile")).SendKeys(contact.Mobile);
         }
 
-        private void InitNewGroupCreation()
+        private void InitNewContactCreation()
         {
-            //Инициация создания новой группы
-            driver.FindElement(By.LinkText("groups")).Click();
-            driver.FindElement(By.Name("new")).Click();
+            //Инициация создания нового контакта
+            driver.FindElement(By.LinkText("add new")).Click();
         }
 
         private void GoToGroupsPage()
@@ -108,7 +118,6 @@ namespace WebAddressbookTests
             // открытие домашней страницы
             driver.Navigate().GoToUrl(baseURL);
         }
-
         private bool IsElementPresent(By by)
         {
             try
@@ -158,4 +167,3 @@ namespace WebAddressbookTests
         }
     }
 }
-
