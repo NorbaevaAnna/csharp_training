@@ -12,10 +12,10 @@ namespace WebAddressbookTests
 {
     public class TestBase
     {
-        protected IWebDriver driver;
+        private IWebDriver driver;
         private StringBuilder verificationErrors;
-        protected string baseURL;
-        protected bool acceptNextAlert = true;
+        private string baseURL;
+        private bool acceptNextAlert = true;
 
         [SetUp]
         protected void SetupTest()
@@ -115,9 +115,8 @@ namespace WebAddressbookTests
         protected void SelectContact()
         {
             //выбор контакта для удаления
-            driver.Navigate().GoToUrl("baseURL");
             acceptNextAlert = true;
-            driver.FindElement(By.Id("2")).Click();
+            driver.FindElement(By.Id("1")).Click();
         }
         protected void ReturnToHomePage()
         {

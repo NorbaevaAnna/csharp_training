@@ -18,8 +18,8 @@ namespace WebAddressbookTests
         {
             GoHomePage();
             Login(new AccountData("admin", "secret"));
-            GoToGroupsPage();
             ReturnToHomePage();
+            GoHomePage();
             SelectContact();
             RemoveContact();
             ProofRemoveContact();
