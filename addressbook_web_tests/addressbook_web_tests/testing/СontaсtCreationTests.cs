@@ -16,19 +16,19 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            GoHomePage();
-            Login(new AccountData("admin", "secret"));
-            GoToGroupsPage();
-            InitNewContactCreation();
+            app.Navigator.GoHomePage();
+            app.Auth.Login(new AccountData("admin", "secret"));
+            app.Navigator.GoToGroupsPage();
+            app.Contacts.InitNewContactCreation();
             ContactData contact = new ContactData("Anna1", "Norbaeva1");
-            FillContactForm(contact);
+            app.Contacts.FillContactForm(contact);
             contact.Title = "89039532332";
             contact.Address = "Tomsk";
             contact.Email = "ladyann@sibmail.com";
             contact.Company = "VSK1";
             contact.Mobile = "89039532332";
-            SubmitContactCreation();
-            ReturnToHomePage();
+            app.Contacts.SubmitContactCreation();
+            app.Navigator.ReturnToHomePage();
         }
     }
 }

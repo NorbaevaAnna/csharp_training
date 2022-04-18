@@ -61,15 +61,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountData.cs" />
-    <Compile Include="ContactData.cs" />
-    <Compile Include="GroupData.cs" />
-    <Compile Include="GroupRemovalTest.cs" />
-    <Compile Include="ContactRemovalTests.cs" />
-    <Compile Include="TestBase.cs" />
-    <Compile Include="СontaсtCreationTests.cs" />
+    <Compile Include="model\AccountData.cs" />
+    <Compile Include="appManager\ApplicationManager.cs" />
+    <Compile Include="appManager\ContactHelper.cs" />
+    <Compile Include="appManager\GroupHelper.cs" />
+    <Compile Include="appManager\HelperBase.cs" />
+    <Compile Include="appManager\LoginHelper.cs" />
+    <Compile Include="model\ContactData.cs" />
+    <Compile Include="model\GroupData.cs" />
+    <Compile Include="testing\GroupRemovalTest.cs" />
+    <Compile Include="testing\ContactRemovalTests.cs" />
+    <Compile Include="appManager\NavigationHelper.cs" />
+    <Compile Include="appManager\TestBase.cs" />
+    <Compile Include="testing\СontaсtCreationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GroupCreationTests.cs" />
+    <Compile Include="testing\GroupCreationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
