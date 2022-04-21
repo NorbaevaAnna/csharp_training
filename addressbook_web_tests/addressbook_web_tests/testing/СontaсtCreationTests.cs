@@ -17,7 +17,6 @@ namespace WebAddressbookTests
         public void ContactCreationTest()
         {
             ContactData contact = new ContactData("Anna1", "Norbaeva1");
-            app.Contacts.FillContactForm(contact);
             contact.Title = "89039532332";
             contact.Address = "Tomsk";
             contact.Email = "ladyann@sibmail.com";

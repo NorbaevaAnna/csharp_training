@@ -11,29 +11,29 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAddressbookTests
 {
     public class ApplicationManager
-    {
-        private IWebDriver driver;
-        private StringBuilder verificationErrors;
-        private string baseURL;
-        private readonly bool acceptNextAlert = true;
+        {
+        protected IWebDriver driver;
+        protected string baseURL;
 
         protected LoginHelper loginHelper;
         protected NavigationHelper navigator;
-        protected GroupHelper groupHelper;
-        protected ContactHelper contactHelper;
+        protected GroupHelper gHelper;
+        protected ContactHelper contHelper;
 
         public ApplicationManager()
         {
-            driver = new ChromeDriver();
-            baseURL = "http://localhost/addressbook/";
-            verificationErrors = new StringBuilder();
+            driver = new FirefoxDriver();
+            baseURL = "http://localhost/addressbook";
 
-            loginHelper = new LoginHelper(driver);
-            navigator = new NavigationHelper(driver, baseURL);
-            groupHelper = new GroupHelper(driver, baseURL);
-            contactHelper = new ContactHelper(driver, baseURL, acceptNextAlert);
+            loginHelper = new LoginHelper(this);
+            navigator = new NavigationHelper(this, baseURL);
+            gHelper = new GroupHelper(this);
+            contHelper = new ContactHelper(this);
         }
-
+        public IWebDriver Driver
+        {
+            get { return driver; }
+        }
         public void Stop()
         {
             try
@@ -45,15 +45,23 @@ namespace WebAddressbookTests
                 // Ignore errors if unable to close the browser
             }
         }
-
-        public LoginHelper Auth
-            { get { return loginHelper; } }
-        public NavigationHelper Navigator
-        { get { return navigator; } }
-        public GroupHelper Groups      
-                { get { return groupHelper; } }
-        public ContactHelper Contacts  
-                { get { return contactHelper; } }
-
+        public LoginHelper auth
+        {
+            get
+            { return loginHelper; }
+        }
+        public NavigationHelper navi
+        {
+            get
+            { return navigator; }
+        }
+        public GroupHelper groups
+        {
+            get { return gHelper; }
+        }
+        public ContactHelper contacts
+        {
+            get { return contHelper; }
+        }
     }
 }
