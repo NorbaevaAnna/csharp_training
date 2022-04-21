@@ -10,6 +10,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
+
         public class NavigationHelper : HelperBase
     {
 
