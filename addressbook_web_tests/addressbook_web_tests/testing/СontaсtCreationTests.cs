@@ -16,10 +16,6 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            app.Navigator.GoHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
-            app.Navigator.GoToGroupsPage();
-            app.Contacts.InitNewContactCreation();
             ContactData contact = new ContactData("Anna1", "Norbaeva1");
             app.Contacts.FillContactForm(contact);
             contact.Title = "89039532332";
@@ -27,8 +23,22 @@ namespace WebAddressbookTests
             contact.Email = "ladyann@sibmail.com";
             contact.Company = "VSK1";
             contact.Mobile = "89039532332";
-            app.Contacts.SubmitContactCreation();
-            app.Navigator.ReturnToHomePage();
+            
+            app.contacts.CreateContact(contact);
+        }
+
+        [Test]
+        public void EmptyContactCreationTest()
+        {
+
+            ContactData contact = new ContactData("");
+            contact.Title = "";
+            contact.Address = "";
+            contact.Email = "";
+            contact.Company = "";
+            contact.Mobile = "";
+
+            app.contacts.CreateContact(contact);
         }
     }
 }
