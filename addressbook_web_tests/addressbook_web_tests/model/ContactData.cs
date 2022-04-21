@@ -8,6 +8,8 @@ namespace WebAddressbookTests
 {
     public class ContactData
     {
+        internal string Firstname;
+        internal string Middlename;
         private string name;
         private string lastname;
         private string title = "";

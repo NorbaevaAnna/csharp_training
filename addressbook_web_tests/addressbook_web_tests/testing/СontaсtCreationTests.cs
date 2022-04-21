@@ -16,7 +16,9 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            ContactData contact = new ContactData("Anna1", "Norbaeva1");
+
+            ContactData contactData = new ContactData("Anna1", "Norbaeva1");
+            ContactData contact = contactData;
             contact.Title = "89039532332";
             contact.Address = "Tomsk";
             contact.Email = "ladyann@sibmail.com";
@@ -30,7 +32,8 @@ namespace WebAddressbookTests
         public void EmptyContactCreationTest()
         {
 
-            ContactData contact = new ContactData("");
+            ContactData contactData = new ContactData("", "");
+            ContactData contact = contactData;
             contact.Title = "";
             contact.Address = "";
             contact.Email = "";
