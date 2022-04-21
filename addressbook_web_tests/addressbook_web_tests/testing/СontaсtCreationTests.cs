@@ -17,28 +17,19 @@ namespace WebAddressbookTests
         public void ContactCreationTest()
         {
 
-            ContactData contactData = new ContactData("Anna1", "Norbaeva1");
-            ContactData contact = contactData;
-            contact.Title = "89039532332";
-            contact.Address = "Tomsk";
-            contact.Email = "ladyann@sibmail.com";
-            contact.Company = "VSK1";
-            contact.Mobile = "89039532332";
-            
+            ContactData contact = new ContactData("new_new");
+            contact.Middlename = "dddddd";
+            contact.Lastname = "ffffffff";
+
             app.contacts.CreateContact(contact);
         }
-
         [Test]
         public void EmptyContactCreationTest()
         {
 
-            ContactData contactData = new ContactData("", "");
-            ContactData contact = contactData;
-            contact.Title = "";
-            contact.Address = "";
-            contact.Email = "";
-            contact.Company = "";
-            contact.Mobile = "";
+            ContactData contact = new ContactData("");
+            contact.Middlename = "";
+            contact.Lastname = "";
 
             app.contacts.CreateContact(contact);
         }

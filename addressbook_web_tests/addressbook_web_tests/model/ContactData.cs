@@ -1,36 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using System.Threading;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
     public class ContactData
     {
-        internal string Firstname;
-        internal string Middlename;
-        private string name;
-        private string lastname;
-        private string title = "";
-        private string company = "";
-        private string address = "";
-        private string email = "";
-        private string mobile = "";
+        private string firstname;
+        private string middlename = "";
+        private string lastname = "";
 
-
-        public ContactData(string name, string lastname)
+        public ContactData(string firstname)
         {
-            this.name = name;
-            this.lastname = lastname;
+            this.firstname = firstname;
         }
-        
-        public string Name { get { return name; } set { name = value; } }
-        public string Lastname { get { return lastname; } set { lastname = value; } }
-        public string Company { get { return company; } set { company = value; } }
-        public string Address { get { return address; } set { address = value; } }
-        public string Title { get { return title; } set { title = value; } }
-        public string Email { get { return email; } set { email = value; } }
-        public string Mobile { get { return mobile; } set { mobile = value; } }
+        public string Firstname
+        {
+            get { return firstname; }
+            set { firstname = value; }
+        }
+        public string Middlename
+        {
+            get { return middlename; }
+            set { middlename = value; }
+        }
+        public string Lastname
+        {
+            get { return lastname; }
+            set { lastname = value; }
+        }
     }
 }
