@@ -22,7 +22,7 @@ namespace WebAddressbookTests
 
         public ApplicationManager()
         {
-            driver = new FirefoxDriver();
+            driver = new ChromeDriver();
             baseURL = "http://localhost/addressbook";
 
             loginHelper = new LoginHelper(this);
