@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -20,7 +21,9 @@ namespace WebAddressbookTests
         protected GroupHelper gHelper;
         protected ContactHelper contHelper;
 
-        public ApplicationManager()
+        private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
+
+        private ApplicationManager()
         {
             driver = new ChromeDriver();
             baseURL = "http://localhost/addressbook";
@@ -30,11 +33,8 @@ namespace WebAddressbookTests
             gHelper = new GroupHelper(this);
             contHelper = new ContactHelper(this);
         }
-        public IWebDriver Driver
-        {
-            get { return driver; }
-        }
-        public void Stop()
+
+         ~ApplicationManager()
         {
             try
             {
@@ -45,6 +45,21 @@ namespace WebAddressbookTests
                 // Ignore errors if unable to close the browser
             }
         }
+
+        public static ApplicationManager GetInstance()
+        {
+            if (! app.IsValueCreated)
+                {
+                     app.Value = new ApplicationManager();
+                }
+            return app.Value;
+        }
+
+        public IWebDriver Driver
+        {
+            get { return driver; }
+        }
+
         public LoginHelper auth
         {
             get

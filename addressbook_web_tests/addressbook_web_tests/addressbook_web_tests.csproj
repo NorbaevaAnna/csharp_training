@@ -78,6 +78,7 @@
     <Compile Include="testing\СontaсtCreationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="testing\GroupCreationTests.cs" />
+    <Compile Include="TestSuiteFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

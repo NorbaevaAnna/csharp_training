@@ -12,16 +12,15 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactModificationTests : TestBase
+    public class TestSuiteFixture
     {
-        [Test]
-        public void ContactModificationTest()
-        {
-            ContactData newDataContact = new ContactData("rrr");
-            newDataContact.Middlename = "yyy";
-            newDataContact.Lastname = "f1";
 
-            app.contacts.ModifyContact(1, newDataContact);
+        [SetUp]
+        public void InitApplicationManager()
+        {
+            ApplicationManager app = ApplicationManager.GetInstance();
+            app.navi.OpenHomePage();
+            app.auth.Login(new AccountData("admin", "secret"));
         }
     }
 }
