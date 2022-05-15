@@ -21,7 +21,7 @@ namespace WebAddressbookTests
         protected GroupHelper gHelper;
         protected ContactHelper contHelper;
 
-        private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
+        private static readonly ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
         private ApplicationManager()
         {
@@ -60,21 +60,21 @@ namespace WebAddressbookTests
             get { return driver; }
         }
 
-        public LoginHelper auth
+        public LoginHelper Auth
         {
             get
             { return loginHelper; }
         }
-        public NavigationHelper navi
+        public NavigationHelper Navi
         {
             get
             { return navigator; }
         }
-        public GroupHelper groups
+        public GroupHelper Groups
         {
             get { return gHelper; }
         }
-        public ContactHelper contacts
+        public ContactHelper Contacts
         {
             get { return contHelper; }
         }

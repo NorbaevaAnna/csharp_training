@@ -17,14 +17,14 @@ namespace WebAddressbookTests
         public void GroupCreationTest()
         {
             GroupData group = new GroupData("h", "d", "p");
-            app.groups.Create(group);
+            app.Groups.Create(group);
         }
 
         [Test]
         public void EmptyGroupCreationTest()
         {
             GroupData group = new GroupData("", "", "");
-            app.groups.Create(group);
+            app.Groups.Create(group);
         }
     }
 }
