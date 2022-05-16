@@ -21,9 +21,10 @@ namespace WebAddressbookTests
         protected GroupHelper gHelper;
         protected ContactHelper contHelper;
 
-        private static readonly ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
-        private ApplicationManager()
+        public static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
+
+        public ApplicationManager()
         {
             driver = new ChromeDriver();
             baseURL = "http://localhost/addressbook";
@@ -49,11 +50,14 @@ namespace WebAddressbookTests
         public static ApplicationManager GetInstance()
         {
             if (! app.IsValueCreated)
-                {
-                     app.Value = new ApplicationManager();
-                }
+            {
+                ApplicationManager newInstance = new ApplicationManager();
+                newInstance.Navi.OpenHomePage();
+                app.Value = newInstance;
+            }
             return app.Value;
         }
+
 
         public IWebDriver Driver
         {

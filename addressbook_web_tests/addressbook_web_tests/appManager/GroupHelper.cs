@@ -18,8 +18,6 @@ namespace WebAddressbookTests
         }
         public GroupHelper Create(GroupData group)
         {
-            manager.Navi.OpenHomePage();
-            manager.Auth.Login(new AccountData("admin", "secret"));
             manager.Navi.GoToGroupsPage();
             InitNewGroupCreation();
             FillGroupForm(group);
@@ -30,8 +28,6 @@ namespace WebAddressbookTests
 
         public GroupHelper Remove(int v)
         {
-            manager.Navi.OpenHomePage();
-            manager.Auth.Login(new AccountData("admin", "secret"));
             manager.Navi.GoToGroupsPage();
             SelectGroup(v);
             RemoveGroup();
@@ -43,8 +39,6 @@ namespace WebAddressbookTests
 
         public GroupHelper Modify(int v, GroupData newData)
         {
-            manager.Navi.OpenHomePage();
-            manager.Auth.Login(new AccountData("admin", "secret"));
             manager.Navi.GoToGroupsPage();
             SelectGroup(v);
             InitGroupModification();

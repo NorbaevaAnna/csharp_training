@@ -2,7 +2,6 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -11,16 +10,12 @@ using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
-    [TestFixture]
-    public class TestSuiteFixture
+    public class AuthTestBase : TestBase
     {
-
         [SetUp]
-        public void InitApplicationManager()
+        public void SetupLogin()
         {
-            ApplicationManager app = ApplicationManager.GetInstance();
-            app.navi.OpenHomePage();
-            app.auth.Login(new AccountData("admin", "secret"));
+            app.Auth.Login(new AccountData("admin", "secret"));
         }
     }
 }

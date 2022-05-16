@@ -19,8 +19,6 @@ namespace WebAddressbookTests
         }
         public ContactHelper CreateContact(ContactData contact)
         {
-            manager.Navi.OpenHomePage();
-            manager.Auth.Login(new AccountData("admin", "secret"));
             InitNewContactCreation();
             FillContactForm(contact);
             SubmitContactCreation();
@@ -29,8 +27,6 @@ namespace WebAddressbookTests
         }
         public ContactHelper RemoveContact(int v)
         {
-            manager.Navi.OpenHomePage();
-            manager.Auth.Login(new AccountData("admin", "secret"));
             SelectContact(v);
             CLickDeleteButton();
             CloseAlertMessage();
@@ -41,8 +37,6 @@ namespace WebAddressbookTests
         public ContactHelper ModifyContact(int v, ContactData newDataContact)
         {
 
-            manager.Navi.OpenHomePage();
-            manager.Auth.Login(new AccountData("admin", "secret"));
             SelectModifyContact(v);
             FillContactForm(newDataContact);
             UpdateContact();
