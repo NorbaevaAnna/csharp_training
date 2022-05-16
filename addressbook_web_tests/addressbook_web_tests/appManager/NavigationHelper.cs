@@ -26,12 +26,21 @@ namespace WebAddressbookTests
         public void OpenHomePage()
         {
             // открытие домашней страницы
+            if (driver.Url == baseURL)
+            {
+                return;
+            }
             driver.Navigate().GoToUrl(baseURL);
         }
 
         public void GoToGroupsPage()
         {
             //Переход на страницу групп
+            if (driver.Url == baseURL + "group.php"
+                && IsElementPresent(By.Name("new")))
+            {
+                return;
+            }
             driver.FindElement(By.LinkText("groups")).Click();
         }
         public void ExitFromAddressbook()
