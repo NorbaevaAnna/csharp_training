@@ -26,6 +26,7 @@ namespace WebAddressbookTests
             return this;
         }
 
+
         public GroupHelper Remove(int v)
         {
             manager.Navi.GoToGroupsPage();
@@ -87,6 +88,11 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.Name("edit")).Click();
             return this;
+        }
+
+        public bool ThereIsAGroup(int v)
+        {
+            return IsElementPresent(By.XPath("//div[@id='content']/form/span[" + v + "]/input"));
         }
     }
 }

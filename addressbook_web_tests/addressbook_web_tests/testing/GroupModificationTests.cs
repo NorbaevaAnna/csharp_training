@@ -18,6 +18,11 @@ namespace WebAddressbookTests
         {
         GroupData newData = new GroupData("zz", "zz", "qq");
             app.Groups.Modify(1, newData);
+            
+            if (!app.Groups.ThereIsAGroup(1))
+            {
+                app.Groups.Create(new GroupData("zz1", "zz2", "qq3"));
+            }
         }
     }
 }

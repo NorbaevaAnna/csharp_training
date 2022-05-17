@@ -25,6 +25,8 @@ namespace WebAddressbookTests
             ReturnToHomePage();
             return this;
         }
+
+
         public ContactHelper RemoveContact(int v)
         {
             SelectContact(v);
@@ -93,6 +95,11 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.XPath("//input[@value='Update'][2]")).Click();
             return this;
+        }
+
+        public bool ThereIsAContacts(int v)
+        {
+            return IsElementPresent(By.XPath("//tr[@name='entry'][" + v + "]//img[@title='Edit']"));
         }
     }
 }

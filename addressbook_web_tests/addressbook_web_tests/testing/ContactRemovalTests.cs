@@ -17,6 +17,11 @@ namespace WebAddressbookTests
         public void ContactRemovalTest()
         {
             app.Contacts.RemoveContact(1);
+            
+            if (!app.Contacts.ThereIsAContacts(1))
+            {
+                app.Contacts.CreateContact(new ContactData("zz1"));
+            }
         }
     }
 }
