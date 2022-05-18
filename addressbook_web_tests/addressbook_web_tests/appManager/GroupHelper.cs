@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
 
 namespace WebAddressbookTests
 {
@@ -25,7 +26,6 @@ namespace WebAddressbookTests
             manager.Navi.ReturnToGroupsPage();
             return this;
         }
-
 
         public GroupHelper Remove(int v)
         {
@@ -93,6 +93,17 @@ namespace WebAddressbookTests
         public bool ThereIsAGroup(int v)
         {
             return IsElementPresent(By.XPath("//div[@id='content']/form/span[" + v + "]/input"));
+        }
+        public List<GroupData> GetGroupList()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            manager.Navi.GoToGroupsPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements)
+            {
+                groups.Add(new GroupData(element.Text));
+            }
+            return groups;
         }
     }
 }
