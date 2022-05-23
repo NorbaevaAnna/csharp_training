@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Collections.Generic;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -16,7 +17,6 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-
             ContactData contactData = new ContactData("new_new");
             ContactData contact = contactData;
             contact.Middlename = "dddddd";

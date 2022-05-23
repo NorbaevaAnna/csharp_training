@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
 
 namespace WebAddressbookTests
 {
@@ -17,12 +18,22 @@ namespace WebAddressbookTests
         public void GroupModificationTest()
         {
         GroupData newData = new GroupData("zz", "zz", "qq");
-            app.Groups.Modify(1, newData);
-            
-            if (!app.Groups.ThereIsAGroup(1))
+
+            if (!app.Groups.ThereIsAGroup(0))
             {
                 app.Groups.Create(new GroupData("zz1", "zz2", "qq3"));
             }
+
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+            app.Groups.Modify(0, newData);
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups[0].Name = newData.Name;
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+
         }
     }
 }

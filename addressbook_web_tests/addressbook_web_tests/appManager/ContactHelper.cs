@@ -7,6 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
 
 namespace WebAddressbookTests
 
@@ -35,6 +36,7 @@ namespace WebAddressbookTests
             manager.Navi.ClickHomeButton();
             return this;
         }
+
 
         public ContactHelper ModifyContact(int v, ContactData newDataContact)
         {
