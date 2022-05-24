@@ -26,7 +26,6 @@ namespace WebAddressbookTests
             app.Groups.Remove(0);
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
 
             //удаляем самый первый элемент из старого списка
             oldGroups.RemoveAt(0);

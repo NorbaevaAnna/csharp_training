@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
@@ -75,7 +77,7 @@ namespace WebAddressbookTests
 
         public ContactHelper SelectContact(int index)
         {
-            driver.FindElement(By.XPath("//tr[@name='entry'][" + index + "]/ td/input")).Click();
+            driver.FindElement(By.XPath("//tr[@name='entry'][" + (index + 1) + "]/ td/input")).Click();
             return this;
         }
         public ContactHelper CloseAlertMessage()
@@ -90,7 +92,7 @@ namespace WebAddressbookTests
         }
         public ContactHelper SelectModifyContact(int index)
         {
-            driver.FindElement(By.XPath("(//img[@title='Edit'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("(//img[@title='Edit'])[" + (index + 1) + "]")).Click();
             return this;
         }
         public ContactHelper UpdateContact()
@@ -102,6 +104,20 @@ namespace WebAddressbookTests
         public bool ThereIsAContacts(int v)
         {
             return IsElementPresent(By.XPath("//tr[@name='entry'][" + v + "]//img[@title='Edit']"));
+        }
+
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contactlist = new List<ContactData>();
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//tr[@name='entry']"));
+            foreach (IWebElement element in elements)
+            {
+                contactlist.Add(new ContactData(element.FindElement(By.XPath("./td[3]")).Text)
+                {
+                    Lastname = element.FindElement(By.XPath("./ td[2]")).Text
+                });
+            }
+            return contactlist;
         }
     }
 }

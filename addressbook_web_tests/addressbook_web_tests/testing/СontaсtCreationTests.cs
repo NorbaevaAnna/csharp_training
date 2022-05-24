@@ -17,13 +17,22 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            ContactData contactData = new ContactData("new_new");
+            ContactData contactData = new ContactData("new_N");
             ContactData contact = contactData;
-            contact.Middlename = "dddddd";
-            contact.Lastname = "ffffffff";
+            contact.Middlename = "ddd1";
+            contact.Lastname = "fff1";
+
+            List<ContactData> oldContact = app.Contacts.GetContactList();
 
             app.Contacts.CreateContact(contact);
+
+            List<ContactData> newContact = app.Contacts.GetContactList();
+            oldContact.Add(contact);
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
         }
+
         [Test]
         public void EmptyContactCreationTest()
         {
@@ -32,7 +41,30 @@ namespace WebAddressbookTests
             contact.Middlename = "";
             contact.Lastname = "";
 
+            List<ContactData> oldContact = app.Contacts.GetContactList();
             app.Contacts.CreateContact(contact);
+            List<ContactData> newContact = app.Contacts.GetContactList();
+            oldContact.Add(contact);
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
+        }
+
+        [Test]
+        public void BadNameContactTest()
+        {
+
+            ContactData contact = new ContactData("d'fdf");
+            contact.Middlename = "hh'hh";
+            contact.Lastname = "jj'jj";
+
+            List<ContactData> oldContact = app.Contacts.GetContactList();
+            app.Contacts.CreateContact(contact);
+            List<ContactData> newContact = app.Contacts.GetContactList();
+            oldContact.Add(contact);
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
         }
     }
 }

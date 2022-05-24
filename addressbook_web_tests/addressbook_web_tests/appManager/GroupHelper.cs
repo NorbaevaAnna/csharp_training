@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Text;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -35,8 +37,6 @@ namespace WebAddressbookTests
             manager.Navi.ReturnToGroupsPage();
             return this;
         }
-
-
 
         public GroupHelper Modify(int v, GroupData newData)
         {
@@ -94,6 +94,13 @@ namespace WebAddressbookTests
         {
             return IsElementPresent(By.XPath("//div[@id='content']/form/span[" + v + "]/input"));
         }
+
+
+        public int GetGroupCount()
+        {
+            return driver.FindElements(By.CssSelector("span.group")).Count;
+        }
+
         public List<GroupData> GetGroupList()
         {
             List<GroupData> groups = new List<GroupData>();

@@ -7,6 +7,9 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace WebAddressbookTests
 {
@@ -16,12 +19,17 @@ namespace WebAddressbookTests
         [Test]
         public void ContactRemovalTest()
         {
-            app.Contacts.RemoveContact(1);
-            
             if (!app.Contacts.ThereIsAContacts(1))
             {
-                app.Contacts.CreateContact(new ContactData("zz1"));
+                app.Contacts.CreateContact(new ContactData("Aa1"));
             }
+            List<ContactData> oldContact = app.Contacts.GetContactList();
+            app.Contacts.RemoveContact(0);
+            List<ContactData> newContact = app.Contacts.GetContactList();
+            oldContact.RemoveAt(0);
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
         }
     }
 }

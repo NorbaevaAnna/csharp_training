@@ -7,10 +7,12 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebAddressbookTests
 {
-    public class ContactData
+    public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string firstname;
         private string middlename = "";
@@ -20,20 +22,39 @@ namespace WebAddressbookTests
         {
             this.firstname = firstname;
         }
-        public string Firstname
+        public bool Equals(ContactData other)
         {
-            get { return firstname; }
-            set { firstname = value; }
+            if (Object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+            return Firstname == other.Firstname
+                 && Lastname == other.Lastname;
         }
-        public string Middlename
+        public override int GetHashCode()
         {
-            get { return middlename; }
-            set { middlename = value; }
+            return Firstname.GetHashCode() + Lastname.GetHashCode();
         }
-        public string Lastname
+        public override string ToString()
         {
-            get { return lastname; }
-            set { lastname = value; }
+            return " Firstname = " + Firstname + "\n" + "Lastname=" + Lastname;
         }
+        public int CompareTo(ContactData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+            return Firstname.CompareTo(other.Firstname) != 0 ? Firstname.CompareTo(other.Firstname) : Lastname.CompareTo(other.Lastname);
+        }
+        public string Firstname { get; set; }
+        public string Middlename { get; set; }
+        public string Lastname { get; set; }
+        public string id { get; set; }
+    
     }
 }
