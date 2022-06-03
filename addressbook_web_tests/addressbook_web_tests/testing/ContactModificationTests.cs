@@ -20,9 +20,11 @@ namespace WebAddressbookTests
         [Test]
         public void ContactModificationTest()
         {
-            ContactData NewContactData = new ContactData("new_cont");
-            NewContactData.Middlename = "555";
-            NewContactData.Lastname = "666";
+            ContactData NewContactData = new ContactData("new_cont")
+            {
+                Middlename = "555",
+                Lastname = "666"
+            };
 
             if (app.Contacts.ThereIsAContacts(1) == false)
                 if (!app.Contacts.ThereIsAContacts(1))

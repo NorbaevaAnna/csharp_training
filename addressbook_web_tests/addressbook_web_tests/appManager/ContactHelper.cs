@@ -117,7 +117,7 @@ namespace WebAddressbookTests
                     Lastname = element.FindElement(By.XPath("./ td[2]")).Text
                 });
             }
-            return contactlist;
+            return new List<ContactData>();
         }
     }
 }
