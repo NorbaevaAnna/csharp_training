@@ -19,7 +19,7 @@ namespace WebAddressbookTests
         {
             if (!app.Groups.ThereIsAGroup(1))
             {
-                app.Groups.Create(new GroupData("zz4", "zz5", "qq6"));
+                app.Groups.Create(new GroupData("zz4"));
             }
             List<GroupData> oldGroups = app.Groups.GetGroupList();
             
@@ -28,11 +28,15 @@ namespace WebAddressbookTests
             Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupCount());
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
-
+            GroupData toBeRemoved = oldGroups[0];
             //удаляем самый первый элемент из старого списка
             oldGroups.RemoveAt(0);
             //сравниваем списки после удаления элемента
             Assert.AreEqual(oldGroups, newGroups);
+            foreach (GroupData group in newGroups)
+            {
+                Assert.AreNotEqual(group.Id, toBeRemoved.Id);
+            }
         }
     }
 }

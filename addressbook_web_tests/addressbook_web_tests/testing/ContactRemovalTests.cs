@@ -23,13 +23,22 @@ namespace WebAddressbookTests
             {
                 app.Contacts.CreateContact(new ContactData("Aa1"));
             }
-            List<ContactData> oldContact = app.Contacts.GetContactList();
+
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
+
             app.Contacts.RemoveContact(0);
-            List<ContactData> newContact = app.Contacts.GetContactList();
-            oldContact.RemoveAt(0);
-            oldContact.Sort();
-            newContact.Sort();
-            Assert.AreEqual(oldContact, newContact);
+            Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactCount());
+
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            ContactData toBeRemoved = oldContacts[0];
+            oldContacts.RemoveAt(0);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
+            foreach (ContactData contact in newContacts)
+            {
+                Assert.AreNotEqual(contact.Id, toBeRemoved.Id);
+            }
         }
     }
 }

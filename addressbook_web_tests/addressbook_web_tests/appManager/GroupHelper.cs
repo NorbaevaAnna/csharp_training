@@ -106,6 +106,7 @@ namespace WebAddressbookTests
 
         private List<GroupData> groupCache = null;
 
+
         public List<GroupData> GetGroupList()
         {
             if (groupCache == null)
@@ -115,6 +116,7 @@ namespace WebAddressbookTests
                 ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
                 foreach (IWebElement element in elements)
                 {
+                    element.FindElement(By.TagName("input")).GetAttribute("value");
                     groupCache.Add(new GroupData(element.Text));
                 }
             }

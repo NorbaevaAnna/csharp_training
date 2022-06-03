@@ -17,7 +17,9 @@ namespace WebAddressbookTests
         [Test]
         public void GroupCreationTest()
         {
-            GroupData group = new GroupData("h", "d", "p");
+            GroupData group = new GroupData("h");
+            group.Footer = "j";
+            group.Header = "k";
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
@@ -35,7 +37,9 @@ namespace WebAddressbookTests
         [Test]
         public void EmptyGroupCreationTest()
         {
-            GroupData group = new GroupData("", "", "");
+            GroupData group = new GroupData("");
+            group.Footer = "";
+            group.Header = "";
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
@@ -52,7 +56,9 @@ namespace WebAddressbookTests
         [Test]
         public void BadNameGroupCreationTest()
         {
-            GroupData group = new GroupData("h'h", "d2", "p2");
+            GroupData group = new GroupData("h'h");
+            group.Footer = "";
+            group.Header = "";
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
