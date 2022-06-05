@@ -54,9 +54,10 @@ namespace WebAddressbookTests
         public void BadNameContactTest()
         {
 
-            ContactData contact = new ContactData("d'fdf");
-            contact.Middlename = "hh'hh";
-            contact.Lastname = "jj'jj";
+            ContactData contactData = new ContactData("d'fdf");
+            ContactData contact = contactData;
+            contact.Middlename = "";
+            contact.Lastname = "";
 
             List<ContactData> oldContact = app.Contacts.GetContactList();
             app.Contacts.CreateContact(contact);

@@ -35,9 +35,9 @@ namespace WebAddressbookTests
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
 
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupCount());
-            List<GroupData> newGroups = app.Groups.GetGroupList();
             oldGroups[0].Name = newData.Name;
             oldGroups.Sort();
+            List<GroupData> newGroups = app.Groups.GetGroupList();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
             foreach (GroupData group in newGroups)
