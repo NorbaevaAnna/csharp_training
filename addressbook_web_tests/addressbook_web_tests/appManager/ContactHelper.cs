@@ -142,13 +142,15 @@ namespace WebAddressbookTests
             string lastName = cells[1].Text;
             string firstName = cells[2].Text;
             string address = cells[3].Text;
+            string allEmail = cells[4].Text;
             string allPhones = cells[5].Text;
 
             return new ContactData(firstName)
             {
                 Lastname = lastName,
                 Address = address,
-                AllPhones = allPhones
+                AllPhones = allPhones,
+                AllEmail = allEmail
             };
         }
 
@@ -162,6 +164,9 @@ namespace WebAddressbookTests
             string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+            string email = driver.FindElement(By.Name("email")).GetAttribute("value");
+            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
+            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
 
             return new ContactData(firstName)
             {
@@ -169,7 +174,10 @@ namespace WebAddressbookTests
                 Address = address,
                 HomePhone = homePhone,
                 MobilePhone = mobilePhone,
-                WorkPhone = workPhone
+                WorkPhone = workPhone,
+                Email = email,
+                Email2 = email2,
+                Email3 = email3
             };
 
         }
