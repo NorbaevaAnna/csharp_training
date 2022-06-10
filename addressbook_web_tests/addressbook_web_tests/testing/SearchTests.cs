@@ -14,7 +14,7 @@ namespace WebAddressbookTests
 
         public void TestSearch()
         {
-            System.Console.Out.Write(app.Contacts.GetNumberOfSearchResults());
+            Console.Out.Write(app.Contacts.GetNumberOfSearchResults());
         }
 
     }

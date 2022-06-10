@@ -15,10 +15,15 @@ namespace WebAddressbookTests
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string allPhones;
-        private string allEmail;
+        private string allEmails;
+        private string allData;
         public ContactData(string firstname)
         {
             Firstname = firstname;
+        }
+
+        public ContactData()
+        {
         }
         public bool Equals(ContactData other)
         {
@@ -67,7 +72,7 @@ namespace WebAddressbookTests
             {
                 if (allPhones != null)
                 {
-                    return allPhones;
+                    return CleanUp(allPhones).Trim();
                 }
                 else
                 {
@@ -77,29 +82,47 @@ namespace WebAddressbookTests
             set { allPhones = value; }
         }
 
-        public string AllEmail
+        public string AllEmails
         {
             get
             {
-                if (allEmail != null)
+                if (allEmails != null)
                 {
-                    return allEmail;
+                    return CleanUp(allEmails).Trim();
                 }
                 else
                 {
                     return (CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim();
                 }
             }
-            set { allEmail = value; }
+            set { allEmails = value; }
         }
 
-        private string CleanUp(string phone)
+        public string AllData
         {
-            if (phone == null || phone == "")
+            get
+            {
+                if (allData != null)
+                {
+                    return CleanUp(allData).Trim();
+                }
+                else
+                {
+                    return (CleanUp(Firstname) + CleanUp(Middlename) + CleanUp(Lastname) + CleanUp(Address)
+                         + CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)
+                         + CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim();
+                }
+            }
+            set { allData = value; }
+        }
+
+        private string CleanUp(string value)
+        {
+            if (value == null || value == "")
             {
                 return "";
             }
-            return Regex.Replace(phone, "[ ()-]", "") + "\r\n";
+            return Regex.Replace(value, "[\\^H:$\\^M:$\\^W:$ \\r\\n()-]", "");
         }
     }
 }

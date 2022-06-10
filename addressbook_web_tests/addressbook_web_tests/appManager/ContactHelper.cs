@@ -40,7 +40,6 @@ namespace WebAddressbookTests
             return this;
         }
 
-
         public ContactHelper ModifyContact(int v, ContactData newDataContact)
         {
 
@@ -142,7 +141,7 @@ namespace WebAddressbookTests
             string lastName = cells[1].Text;
             string firstName = cells[2].Text;
             string address = cells[3].Text;
-            string allEmail = cells[4].Text;
+            string allEmails = cells[4].Text;
             string allPhones = cells[5].Text;
 
             return new ContactData(firstName)
@@ -150,7 +149,7 @@ namespace WebAddressbookTests
                 Lastname = lastName,
                 Address = address,
                 AllPhones = allPhones,
-                AllEmail = allEmail
+                AllEmails = allEmails
             };
         }
 
@@ -159,6 +158,7 @@ namespace WebAddressbookTests
             manager.Navi.ClickHomeButton();
                         SelectModifyContact(0);
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string middleName = driver.FindElement(By.Name("middlename")).GetAttribute("value");
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
             string address = driver.FindElement(By.Name("address")).GetAttribute("value");
             string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
@@ -171,6 +171,7 @@ namespace WebAddressbookTests
             return new ContactData(firstName)
             {
                 Lastname = lastName,
+                Middlename = middleName,
                 Address = address,
                 HomePhone = homePhone,
                 MobilePhone = mobilePhone,
@@ -182,7 +183,24 @@ namespace WebAddressbookTests
 
         }
 
-        internal char GetNumberOfSearchResults()
+        public ContactData GetContactInformationFromProperties(int index)
+        {
+            manager.Navi.ClickHomeButton();
+            ClickContactProperties(index);
+            IWebElement data = driver.FindElement(By.XPath("//*[@id='content']"));
+            string allData = data.Text;
+            return new ContactData()
+            {
+                AllData = allData
+            };
+        }
+
+        private void ClickContactProperties(int index)
+        {
+            driver.FindElement(By.XPath("(//img[@title='Details'])[" + (index + 1) + "]")).Click();
+        }
+
+        public char GetNumberOfSearchResults()
         {
             manager.Navi.ClickHomeButton();
             string text = driver.FindElement(By.TagName("label")).Text;
