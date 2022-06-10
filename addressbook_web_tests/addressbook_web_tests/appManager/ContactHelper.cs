@@ -184,7 +184,7 @@ namespace WebAddressbookTests
 
         internal char GetNumberOfSearchResults()
         {
-            manager.Navi.OpenHomePage();
+            manager.Navi.ClickHomeButton();
             string text = driver.FindElement(By.TagName("label")).Text;
             Match m = new Regex(@"\d+").Match(text);
             return (char)Int32.Parse(m.Value);
