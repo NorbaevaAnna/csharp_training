@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="testing\AuthTestBase.cs" />
+    <Compile Include="testing\ContactInformationTests.cs" />
     <Compile Include="testing\ContactModificationTests.cs" />
     <Compile Include="testing\ContactTestBase.cs" />
     <Compile Include="testing\GroupModificationTests.cs" />
