@@ -26,7 +26,7 @@ namespace WebAddressbookTests
         {
             if (text != null)
             {
-                driver.FindElement(locator).Clear();
+                driver.FindElement(by: locator).Clear();
                 driver.FindElement(locator).SendKeys(text);
             }
         }

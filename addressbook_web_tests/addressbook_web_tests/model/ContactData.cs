@@ -52,15 +52,25 @@ namespace WebAddressbookTests
             {
                 return 1;
             }
-            return Firstname.CompareTo(other.Firstname) != 0 ? Firstname.CompareTo(other.Firstname) : Lastname.CompareTo(other.Lastname); ;
+            return Firstname.CompareTo(other.Firstname) != 0 ? Firstname.CompareTo(other.Firstname) : Lastname.CompareTo(other.Lastname);
+        }
+        private string CleanUp(string value)
+        {
+            if (value == null || value == "")
+            {
+                return "";
+            }
+            return Regex.Replace(value, "[ ()-]", "") + "\r\n";
         }
         public string Firstname { get; set; }
         public string Middlename { get; set; }
         public string Lastname { get; set; }
+        public string NickName { get; set; }
         public string Address { get; set; }
         public string HomePhone { get; set; }
         public string MobilePhone { get; set; }
         public string WorkPhone { get; set; }
+        public string FaxPhone { get; set; }
         public string Id { get; internal set; }
         public string Email { get; set; }
         public string Email2 { get; set; }
@@ -72,7 +82,7 @@ namespace WebAddressbookTests
             {
                 if (allPhones != null)
                 {
-                    return CleanUp(allPhones).Trim();
+                    return allPhones;
                 }
                 else
                 {
@@ -88,7 +98,7 @@ namespace WebAddressbookTests
             {
                 if (allEmails != null)
                 {
-                    return CleanUp(allEmails).Trim();
+                    return allEmails;
                 }
                 else
                 {
@@ -104,25 +114,166 @@ namespace WebAddressbookTests
             {
                 if (allData != null)
                 {
-                    return CleanUp(allData).Trim();
+                    return allData;
                 }
                 else
                 {
-                    return (CleanUp(Firstname) + CleanUp(Middlename) + CleanUp(Lastname) + CleanUp(Address)
-                         + CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone)
-                         + CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim();
+                    return
+                    DetailFullNameBlock(Firstname, Middlename, Lastname) +
+                    DetailFields(DetailFullNameBlock(Firstname, Middlename, Lastname), NickName) +
+                    DetailFields(NickName, Address) +
+                    DetailPhonesBlock(HomePhone, MobilePhone, WorkPhone, FaxPhone) +
+                    DetailEmailsBlock(Email, Email2, Email3);
                 }
             }
             set { allData = value; }
         }
 
-        private string CleanUp(string value)
+        private string DetailPhonesBlock(string homePhone, string mobilePhone, string workPhone, string faxPhone)
+        {
+            string phones = "\r\n";
+            if (homePhone == null || homePhone == "")
+            {
+                phones += $"";
+            }
+            else
+            {
+                phones += $"\r\nH: {homePhone}";
+            }
+            if (mobilePhone == null || mobilePhone == "")
+            {
+                phones += $"";
+            }
+            else
+            {
+                phones += $"\r\nM: {mobilePhone}";
+            }
+            if (workPhone == null || workPhone == "")
+            {
+                phones += $"";
+            }
+            else
+            {
+                phones += $"\r\nW: {workPhone}";
+            }
+            if (faxPhone == null || faxPhone == "")
+            {
+                phones += $"";
+            }
+            else
+            {
+                phones += $"\r\nF: {faxPhone}";
+            }
+            if ((homePhone == null || homePhone == "") && (mobilePhone == null || mobilePhone == "") && (workPhone == null || workPhone == "") && (faxPhone == null || faxPhone == ""))
+            {
+                return $"";
+            }
+            else
+            {
+                return phones;
+            }
+        }
+
+        private string DetailEmailsBlock(string email, string email2, string email3)
+        {
+            string emails = "\r\n";
+            if (email == null || email == "")
+            {
+                emails += $"";
+            }
+            else
+            {
+                emails += $"\r\n{email}";
+            }
+            if (email2 == null || email2 == "")
+            {
+                emails += $"";
+            }
+            else
+            {
+                emails += $"\r\n{email2}";
+            }
+            if (email3 == null || email3 == "")
+            {
+                emails += $"";
+            }
+            else
+            {
+                emails += $"\r\n{email3}";
+            }
+            if ((email == null || email == "") && (email2 == null || email2 == "") && (email3 == null || email3 == ""))
+            {
+                return $"";
+            }
+            else
+            {
+                return emails;
+            }
+        }
+
+        public string DetailFields(string beforefield, string value)
         {
             if (value == null || value == "")
             {
-                return "";
+                return $"";
             }
-            return Regex.Replace(value, "[\\^H:$\\^M:$\\^W:$ \\r\\n()-]", "");
+            else
+            {
+                if (beforefield == null || beforefield == "")
+                {
+                    return $"{value}";
+                }
+                else
+                {
+                    return $"\r\n{value}";
+                }
+            }
+        }
+        public string DetailFullNameBlock(string firstname, string middlename, string lastname)
+        {
+            string fullname = $"";
+
+            if (firstname == null || firstname == "")
+            {
+                fullname += $"";
+            }
+            else
+            {
+                fullname += $"{firstname}";
+            }
+
+            if (middlename == null || middlename == "")
+            {
+                fullname += $"";
+            }
+            else
+            {
+                if (firstname == null || firstname == "")
+                {
+                    fullname += $"{middlename}";
+                }
+                else
+                {
+                    fullname += $" {middlename}";
+                }
+            }
+
+            if (lastname == null || lastname == "")
+            {
+                fullname += $"";
+            }
+            else
+            {
+                if ((firstname == null || firstname == "") && (middlename == null || middlename == ""))
+                {
+                    fullname += $"{lastname}";
+                }
+                else
+                {
+                    fullname += $" {lastname}";
+                }
+            }
+            return fullname;
         }
     }
 }
